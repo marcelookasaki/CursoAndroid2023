@@ -1,8 +1,10 @@
-package dev.omy.applistavip;
+package dev.omy.applistavip.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import dev.omy.applistavip.R;
 
 public class MainActivity extends AppCompatActivity {
 
