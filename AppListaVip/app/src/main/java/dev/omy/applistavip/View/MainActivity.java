@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import dev.omy.applistavip.Model.Pessoa;
 import dev.omy.applistavip.R;
@@ -55,6 +57,25 @@ public class MainActivity extends AppCompatActivity {
         etTelefone.setText(pessoa.getTelefoneContato());
 
         Log.i("POOAndroid", "Objeto pessoa: " + pessoa.toString());
+
+        btnLimpar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                etPrimeiroNome.setText("");
+                etSobrenome.setText("");
+                etCursoDesejado.setText("");
+                etTelefone.setText("");
+            }
+        });
+
+        btnFinalizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MainActivity.this, "Volte sempre!",
+                                Toast.LENGTH_LONG).show();
+                finish();
+            }
+        });
 
     }
 }
