@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import dev.omy.applistavip.Controller.PessoaController;
 import dev.omy.applistavip.Model.Pessoa;
 import dev.omy.applistavip.R;
 
@@ -23,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     Button btnLimpar;
     Button btnSalvar;
     Button btnFinalizar;
+
+    // Declara classe pessoa controller e cria objeto
+    PessoaController pessoaController;
 
     // Declara classe pessoa e cria objeto
     Pessoa pessoa;
@@ -40,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
         btnLimpar = findViewById(R.id.btnLimpar);
         btnSalvar = findViewById(R.id.btnSalvar);
         btnFinalizar = findViewById(R.id.btnFinalizar);
+
+        // Instancia do objeto pessoa controller
+        pessoaController = new PessoaController();
 
         // Instancia do objeto pessoa
         pessoa = new Pessoa();
@@ -84,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,
                                 "Salvo! " + pessoa.toString(),
                                 Toast.LENGTH_LONG).show();
+
+                pessoaController.salvar(pessoa);
             }
         });
 
