@@ -73,10 +73,10 @@ public class MainActivity extends AppCompatActivity {
                         "telefoneContato", "NumTel"));
 
         // Joga na tela os dados recuperados
-        etPrimeiroNome.setText(pessoa.getPrimeiroNome().toString());
-        etSobrenome.setText(pessoa.getSobreNome().toString());
-        etCursoDesejado.setText(pessoa.getCursoDesejado().toString());
-        etTelefone.setText(pessoa.getTelefoneContato().toString());
+        etPrimeiroNome.setText(pessoa.getPrimeiroNome());
+        etSobrenome.setText(pessoa.getSobreNome());
+        etCursoDesejado.setText(pessoa.getCursoDesejado());
+        etTelefone.setText(pessoa.getTelefoneContato());
 
 
         Log.i("POOAndroid", "Objeto pessoa: " + pessoa.toString());
