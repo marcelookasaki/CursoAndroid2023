@@ -1,26 +1,17 @@
 package dev.omy.applistavip.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import dev.omy.applistavip.Controller.PessoaController;
 import dev.omy.applistavip.Model.Pessoa;
 import dev.omy.applistavip.R;
 
 public class MainActivity extends AppCompatActivity {
-
-    // Declarar Shared Preferences
-    SharedPreferences sharedPreferences;
-    SharedPreferences.Editor listaVIP;
-
-    public static final String NOME_PREFERENCES = "pref_listaVIP";
 
     // Declarar componentes da tela
     EditText etPrimeiroNome;
@@ -52,32 +43,20 @@ public class MainActivity extends AppCompatActivity {
         btnSalvar = findViewById(R.id.btnSalvar);
         btnFinalizar = findViewById(R.id.btnFinalizar);
 
-        // Instancia Shared Preferences e configurar para edição
-        sharedPreferences = getSharedPreferences(NOME_PREFERENCES, 0);
-        listaVIP = sharedPreferences.edit();
 
         // Instancia do objeto pessoa controller
-        pessoaController = new PessoaController();
+        pessoaController = new PessoaController(MainActivity.this);
 
         // Instancia do objeto pessoa
         pessoa = new Pessoa();
 
-        // Recupera dados do shared preferences
-        pessoa.setPrimeiroNome(sharedPreferences.getString(
-                        "primeiroNome", "Nome"));
-        pessoa.setSobreNome(sharedPreferences.getString(
-                "sobreNome", "Sobrenome"));
-        pessoa.setCursoDesejado(sharedPreferences.getString(
-                "cursoDesejado", "Curso"));
-        pessoa.setTelefoneContato(sharedPreferences.getString(
-                        "telefoneContato", "NumTel"));
+        pessoaController.recuperar(pessoa);
 
         // Joga na tela os dados recuperados
         etPrimeiroNome.setText(pessoa.getPrimeiroNome());
         etSobrenome.setText(pessoa.getSobreNome());
         etCursoDesejado.setText(pessoa.getCursoDesejado());
         etTelefone.setText(pessoa.getTelefoneContato());
-
 
         Log.i("POOAndroid", "Objeto pessoa: " + pessoa.toString());
 
@@ -89,9 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 etCursoDesejado.setText("");
                 etTelefone.setText("");
 
-                // Limpar shared preferences
-                listaVIP.clear();
-                listaVIP.apply();
+                pessoaController.limpar();
             }
         });
 
@@ -117,12 +94,6 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(MainActivity.this,
                                 "Salvo! " + pessoa.toString(),
                                 Toast.LENGTH_LONG).show();
-                // Salva em shared preferences
-                listaVIP.putString("primeiroNome", pessoa.getPrimeiroNome());
-                listaVIP.putString("sobreNome", pessoa.getSobreNome());
-                listaVIP.putString("cursoDesejado", pessoa.getCursoDesejado());
-                listaVIP.putString("telefoneContato", pessoa.getTelefoneContato());
-                listaVIP.apply();
 
                 pessoaController.salvar(pessoa);
             }
