@@ -50,8 +50,6 @@ public class MainActivity extends AppCompatActivity {
         pessoa.setCursoDesejado("Android");
         pessoa.setTelefoneContato("11 97187-5153");
 
-
-
         Log.i("POOAndroid", "Objeto pessoa: " + pessoa.toString());
 
         btnLimpar.setOnClickListener(new View.OnClickListener() {
