@@ -18,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
 
     // Declarar Shared Preferences
     SharedPreferences sharedPreferences;
+    SharedPreferences.Editor listaVIP;
 
     public static final String NOME_PREFERENCES = "pref_listaVIP";
 
@@ -53,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Instancia Shared Preferences e configurar para edição
         sharedPreferences = getSharedPreferences(NOME_PREFERENCES, 0);
-        SharedPreferences.Editor listaVIP = sharedPreferences.edit();
+        listaVIP = sharedPreferences.edit();
 
         // Instancia do objeto pessoa controller
         pessoaController = new PessoaController();
@@ -87,6 +88,10 @@ public class MainActivity extends AppCompatActivity {
                 etSobrenome.setText("");
                 etCursoDesejado.setText("");
                 etTelefone.setText("");
+
+                // Limpar shared preferences
+                listaVIP.clear();
+                listaVIP.apply();
             }
         });
 
