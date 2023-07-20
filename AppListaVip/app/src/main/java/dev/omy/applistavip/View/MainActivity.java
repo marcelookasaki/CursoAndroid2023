@@ -50,11 +50,7 @@ public class MainActivity extends AppCompatActivity {
         pessoa.setCursoDesejado("Android");
         pessoa.setTelefoneContato("11 97187-5153");
 
-        // Capturar dados
-        etPrimeiroNome.setText(pessoa.getPrimeiroNome());
-        etSobrenome.setText(pessoa.getSobreNome());
-        etCursoDesejado.setText(pessoa.getCursoDesejado());
-        etTelefone.setText(pessoa.getTelefoneContato());
+
 
         Log.i("POOAndroid", "Objeto pessoa: " + pessoa.toString());
 
@@ -71,9 +67,25 @@ public class MainActivity extends AppCompatActivity {
         btnFinalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "Volte sempre!",
+                Toast.makeText(MainActivity.this,
+                                "Volte sempre!",
                                 Toast.LENGTH_LONG).show();
                 finish();
+            }
+        });
+
+        btnSalvar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Capturar dados
+                pessoa.setPrimeiroNome(etPrimeiroNome.getText().toString());
+                pessoa.setSobreNome(etSobrenome.getText().toString());
+                pessoa.setCursoDesejado(etCursoDesejado.getText().toString());
+                pessoa.setTelefoneContato(etTelefone.getText().toString());
+
+                Toast.makeText(MainActivity.this,
+                                "Salvo! " + pessoa.toString(),
+                                Toast.LENGTH_LONG).show();
             }
         });
 
