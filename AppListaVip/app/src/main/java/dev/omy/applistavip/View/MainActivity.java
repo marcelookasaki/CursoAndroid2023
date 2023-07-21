@@ -6,7 +6,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.List;
+
+import dev.omy.applistavip.Controller.CursoController;
 import dev.omy.applistavip.Controller.PessoaController;
 import dev.omy.applistavip.Model.Pessoa;
 import dev.omy.applistavip.R;
@@ -23,8 +28,14 @@ public class MainActivity extends AppCompatActivity {
     Button btnSalvar;
     Button btnFinalizar;
 
-    // Declara classe pessoa controller e cria objeto
+    Spinner spinner;
+
+    // Declara classe controller e cria objeto
     PessoaController pessoaController;
+    CursoController cursoController;
+
+    // Declara lista de cursos
+    List<String> nomesDosCursos;
 
     // Declara classe pessoa e cria objeto
     Pessoa pessoa;
@@ -42,15 +53,22 @@ public class MainActivity extends AppCompatActivity {
         btnLimpar = findViewById(R.id.btnLimpar);
         btnSalvar = findViewById(R.id.btnSalvar);
         btnFinalizar = findViewById(R.id.btnFinalizar);
+        spinner = findViewById(R.id.spinner);
 
 
         // Instancia do objeto pessoa controller
         pessoaController = new PessoaController(MainActivity.this);
+        cursoController = new CursoController(MainActivity.this);
 
         // Instancia do objeto pessoa
         pessoa = new Pessoa();
 
+        // Instancia método recuperar pessoa
         pessoaController.recuperar(pessoa);
+
+        // Instancia método recuperar listaCursos
+        nomesDosCursos = cursoController.listaSpinner();
+
 
         // Joga na tela os dados recuperados
         etPrimeiroNome.setText(pessoa.getPrimeiroNome());
