@@ -22,7 +22,6 @@ public class MainActivity extends AppCompatActivity {
     // Declarar componentes da tela
     EditText etPrimeiroNome;
     EditText etSobrenome;
-    EditText etCursoDesejado;
     EditText etTelefone;
 
     Button btnLimpar;
@@ -44,12 +43,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_spinner);
 
         // Instanciar componentes
         etPrimeiroNome = findViewById(R.id.etPrimeiroNome);
         etSobrenome = findViewById(R.id.etSobrenome);
-        etCursoDesejado = findViewById(R.id.etCursoDesejado);
         etTelefone = findViewById(R.id.etTelefone);
         btnLimpar = findViewById(R.id.btnLimpar);
         btnSalvar = findViewById(R.id.btnSalvar);
@@ -82,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
         // Joga na tela os dados recuperados
         etPrimeiroNome.setText(pessoa.getPrimeiroNome());
         etSobrenome.setText(pessoa.getSobreNome());
-        etCursoDesejado.setText(pessoa.getCursoDesejado());
         etTelefone.setText(pessoa.getTelefoneContato());
 
         Log.i("POOAndroid", "Objeto pessoa: " + pessoa.toString());
@@ -92,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 etPrimeiroNome.setText("");
                 etSobrenome.setText("");
-                etCursoDesejado.setText("");
                 etTelefone.setText("");
 
                 pessoaController.limpar();
@@ -115,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
                 // Capturar dados
                 pessoa.setPrimeiroNome(etPrimeiroNome.getText().toString());
                 pessoa.setSobreNome(etSobrenome.getText().toString());
-                pessoa.setCursoDesejado(etCursoDesejado.getText().toString());
                 pessoa.setTelefoneContato(etTelefone.getText().toString());
 
                 Toast.makeText(MainActivity.this,
