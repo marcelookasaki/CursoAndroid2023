@@ -4,9 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
+
+import java.util.List;
+
+import dev.omy.applistavip.Controller.CursoController;
 import dev.omy.applistavip.Controller.PessoaController;
 import dev.omy.applistavip.Model.Pessoa;
 import dev.omy.applistavip.R;
@@ -16,15 +22,20 @@ public class MainActivity extends AppCompatActivity {
     // Declarar componentes da tela
     EditText etPrimeiroNome;
     EditText etSobrenome;
-    EditText etCursoDesejado;
     EditText etTelefone;
 
     Button btnLimpar;
     Button btnSalvar;
     Button btnFinalizar;
 
-    // Declara classe pessoa controller e cria objeto
+    Spinner spinner;
+
+    // Declara classe controller e cria objeto
     PessoaController pessoaController;
+    CursoController cursoController;
+
+    // Declara lista de cursos
+    List<String> nomesDosCursos;
 
     // Declara classe pessoa e cria objeto
     Pessoa pessoa;
@@ -32,30 +43,43 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_main_spinner);
 
         // Instanciar componentes
         etPrimeiroNome = findViewById(R.id.etPrimeiroNome);
         etSobrenome = findViewById(R.id.etSobrenome);
-        etCursoDesejado = findViewById(R.id.etCursoDesejado);
         etTelefone = findViewById(R.id.etTelefone);
         btnLimpar = findViewById(R.id.btnLimpar);
         btnSalvar = findViewById(R.id.btnSalvar);
         btnFinalizar = findViewById(R.id.btnFinalizar);
+        spinner = findViewById(R.id.spinner);
 
 
         // Instancia do objeto pessoa controller
         pessoaController = new PessoaController(MainActivity.this);
+        cursoController = new CursoController(MainActivity.this);
+
+        // Adapter
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_list_item_1, cursoController.listaSpinner());
+        // Configura o dropdown como comportanento
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        // Configura o spinner com o adapter
+        spinner.setAdapter(adapter);
 
         // Instancia do objeto pessoa
         pessoa = new Pessoa();
 
+        // Instancia método recuperar pessoa
         pessoaController.recuperar(pessoa);
+
+        // Instancia método recuperar listaCursos
+        nomesDosCursos = cursoController.listaSpinner();
+
 
         // Joga na tela os dados recuperados
         etPrimeiroNome.setText(pessoa.getPrimeiroNome());
         etSobrenome.setText(pessoa.getSobreNome());
-        etCursoDesejado.setText(pessoa.getCursoDesejado());
         etTelefone.setText(pessoa.getTelefoneContato());
 
         Log.i("POOAndroid", "Objeto pessoa: " + pessoa.toString());
@@ -65,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 etPrimeiroNome.setText("");
                 etSobrenome.setText("");
-                etCursoDesejado.setText("");
                 etTelefone.setText("");
 
                 pessoaController.limpar();
@@ -88,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
                 // Capturar dados
                 pessoa.setPrimeiroNome(etPrimeiroNome.getText().toString());
                 pessoa.setSobreNome(etSobrenome.getText().toString());
-                pessoa.setCursoDesejado(etCursoDesejado.getText().toString());
                 pessoa.setTelefoneContato(etTelefone.getText().toString());
 
                 Toast.makeText(MainActivity.this,
