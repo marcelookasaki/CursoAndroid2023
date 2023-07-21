@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -59,6 +60,14 @@ public class MainActivity extends AppCompatActivity {
         // Instancia do objeto pessoa controller
         pessoaController = new PessoaController(MainActivity.this);
         cursoController = new CursoController(MainActivity.this);
+
+        // Adapter
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this, android.R.layout.simple_list_item_1, cursoController.listaSpinner());
+        // Configura o dropdown como comportanento
+        adapter.setDropDownViewResource(android.R.layout.simple_list_item_1);
+        // Configura o spinner com o adapter
+        spinner.setAdapter(adapter);
 
         // Instancia do objeto pessoa
         pessoa = new Pessoa();
