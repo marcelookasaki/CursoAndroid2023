@@ -11,6 +11,8 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.List;
+
 import dev.omy.appgaseta.Controller.CombustivelController;
 import dev.omy.appgaseta.Model.Combustivel;
 import dev.omy.appgaseta.R;
@@ -39,6 +41,8 @@ public class GasEtaActivity extends AppCompatActivity {
     Double precoEtanol;
     String resultado;
 
+    List<Combustivel> dados;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -56,6 +60,9 @@ public class GasEtaActivity extends AppCompatActivity {
 
         // Instancia do objeto controller
         controller = new CombustivelController(GasEtaActivity.this);
+
+        // Busca dados via controller
+        dados = controller.getListaDeDados();
 
         btnCalcular.setOnClickListener(new View.OnClickListener() {
             @Override

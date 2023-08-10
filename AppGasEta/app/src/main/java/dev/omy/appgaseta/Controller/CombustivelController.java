@@ -3,6 +3,8 @@ package dev.omy.appgaseta.Controller;
 import android.content.ContentValues;
 import android.content.SharedPreferences;
 
+import java.util.List;
+
 import dev.omy.appgaseta.Database.GasEtaDB;
 import dev.omy.appgaseta.Model.Combustivel;
 import dev.omy.appgaseta.View.GasEtaActivity;
@@ -39,6 +41,12 @@ public class CombustivelController extends GasEtaDB {
         dados.put("resultado", combustivel.getResultado());
 
         salvarObjeto("Combustivel", dados);
+    }
+
+    public List<Combustivel> getListaDeDados(){
+
+        return listarDados();
+
     }
 
     public void limpar(){
