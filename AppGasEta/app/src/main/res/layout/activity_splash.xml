@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.SplashActivity">
+    tools:context=".View.SplashActivity"
+    android:background="#8DF506">
 
     <ImageView
         android:id="@+id/imageView"
@@ -14,5 +15,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/okazaki_mon" />
+        app:srcCompat="@drawable/bomba"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

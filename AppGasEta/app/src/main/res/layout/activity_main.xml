@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="16dp"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context=".View.GasEtaActivity">
 
@@ -24,9 +24,9 @@
         android:id="@+id/ivBomba"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/bomba"
+        android:layout_gravity="center_horizontal"
         android:layout_margin="16dp"
-        android:layout_gravity="center_horizontal"/>
+        app:srcCompat="@drawable/bomba" />
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="match_parent"
@@ -45,8 +45,10 @@
             android:hint="@string/gasolina"
             android:inputType="numberDecimal"
             android:minHeight="48dp"
-            android:textColorHint="#8D6E63"
+            android:textColor="@color/black"
+            android:textColorHint="@color/black"
             android:textSize="16sp"
+            android:textStyle="bold"
             tools:ignore="VisualLintTextFieldSize" />
 
         <EditText
@@ -60,7 +62,9 @@
             android:hint="@string/etanol"
             android:inputType="numberDecimal"
             android:minHeight="48dp"
+            android:textColorHint="@color/black"
             android:textSize="16sp"
+            android:textStyle="bold"
             tools:ignore="VisualLintTextFieldSize" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
@@ -68,15 +72,14 @@
         android:id="@+id/btnCalcular"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/calcular"
+        android:layout_gravity="center_horizontal"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:background="@color/design_default_color_primary"
+        android:text="@string/calcular"
         android:textColor="@color/white"
-        android:textSize="16sp"
-        android:layout_gravity="center_horizontal"
-        />
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/tvResultado"
@@ -85,8 +88,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
+        android:background="@color/ResultadoBackgroundFolhas"
         android:gravity="center"
         android:text="@string/resultado"
+        android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold" />
 

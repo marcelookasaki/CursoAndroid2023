@@ -64,6 +64,19 @@ public class GasEtaActivity extends AppCompatActivity {
         // Busca dados via controller
         dados = controller.getListaDeDados();
 
+        // Altera registro - teste
+        Combustivel objetoAlteracao = dados.get(1);
+
+        objetoAlteracao.setNomeCombustivel("+++++++++");
+        objetoAlteracao.setPrecoCombustivel(5.01);
+        objetoAlteracao.setResultado("+++++++++++++");
+
+        controller.alterar(objetoAlteracao);
+
+        // Deleta registro - teste
+        controller.deletar(15);
+
+
         btnCalcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -71,13 +84,13 @@ public class GasEtaActivity extends AppCompatActivity {
                 boolean isDadosOK = true;
 
                 if(TextUtils.isEmpty(etGasolina.getText())){
-                    etGasolina.setError("* Campo obrigatório!");
+                    etGasolina.setError("* Campo obrigatorio!");
                     etGasolina.requestFocus();
                     isDadosOK = false;
                 }
 
                 if(TextUtils.isEmpty(etEtanol.getText())){
-                    etEtanol.setError("* Campo obrigatório!");
+                    etEtanol.setError("* Campo obrigatorio!");
                     etEtanol.requestFocus();
                     isDadosOK = false;
                 }
@@ -91,7 +104,7 @@ public class GasEtaActivity extends AppCompatActivity {
                     btnSalvar.setVisibility(View.VISIBLE);
                 }else {
                     Toast.makeText(GasEtaActivity.this,
-                            "Preencha os campos obrigatórios!",
+                            "Preencha os campos obrigatorios!",
                             Toast.LENGTH_LONG).show();
                     btnSalvar.setEnabled(false);
                     btnSalvar.setVisibility(View.GONE);

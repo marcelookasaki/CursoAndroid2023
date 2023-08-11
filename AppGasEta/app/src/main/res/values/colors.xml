@@ -3,4 +3,8 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="corButtons">#03A9F4</color>
+    <color name="ResultadoBackground">#758999</color>
+    <color name="ResultadoBackgroundSky">#7EC4F3</color>
+    <color name="ResultadoBackgroundGreen">#7EC4F3</color>
+    <color name="ResultadoBackgroundFolhas">#425F10</color>
 </resources>
